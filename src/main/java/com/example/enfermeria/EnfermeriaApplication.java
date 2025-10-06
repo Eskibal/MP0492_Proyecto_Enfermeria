@@ -23,6 +23,7 @@ public class EnfermeriaApplication {
 
 	}
 
+	//Method to test if Postman works
     @GetMapping("/mainTest")
     public ResponseEntity<String> mainTest(){
     	return ResponseEntity.ok("The system is working fine!");
