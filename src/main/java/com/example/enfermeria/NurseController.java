@@ -15,22 +15,6 @@ public class NurseController {
 	
 	ArrayList<Nurse> nurseList = EnfermeriaApplication.nurseList;
 
-	@GetMapping("/nurse/name")
-	public ResponseEntity<Nurse> findByName(@RequestParam(value = "name", defaultValue = "") String name) {
-
-		for (int i = 0; i < nurseList.size(); i++) {
-			if (name.equalsIgnoreCase(nurseList.get(i).getName())) {
-				return ResponseEntity.ok(nurseList.get(i));
-			}
-		}
-		return ResponseEntity.notFound().build();
-	}
-	
-	@GetMapping("/nurse/index")
-	public ResponseEntity<ArrayList<Nurse>> getAll(){
-		return ResponseEntity.ok(nurseList);
-	}
-	
 	@PostMapping("/nurse/login")
     public ResponseEntity<Boolean> login(@RequestBody Nurse loginRequest) {
     	String usr = loginRequest.getUser();
@@ -43,5 +27,20 @@ public class NurseController {
     	}
     	return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(false);
     }
+	
+	@GetMapping("/nurse/index")
+	public ResponseEntity<ArrayList<Nurse>> getAll(){
+		return ResponseEntity.ok(nurseList);
+	}
+	
+	@GetMapping("/nurse/name")
+	public ResponseEntity<Nurse> findByName(@RequestParam(value = "name", defaultValue = "") String name) {
 
+		for (int i = 0; i < nurseList.size(); i++) {
+			if (name.equalsIgnoreCase(nurseList.get(i).getName())) {
+				return ResponseEntity.ok(nurseList.get(i));
+			}
+		}
+		return ResponseEntity.notFound().build();
+	}
 }
