@@ -9,8 +9,6 @@ public class Nurse {
 		this.user = user;
 		this.name = name;
 		this.password = password;
-		
-
 	}
 
 	public String getUser() {

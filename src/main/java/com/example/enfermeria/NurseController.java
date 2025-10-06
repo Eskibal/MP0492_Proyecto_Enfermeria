@@ -9,8 +9,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class NurseController {
+	
 	ArrayList<Nurse> nurseList = EnfermeriaApplication.nurseList;
 
+	
+	
+	@GetMapping("/nurse/index")
+	public ResponseEntity<ArrayList<Nurse>> getAll(){
+		return ResponseEntity.ok(nurseList);
+	}
+	
+	
 	@GetMapping("/nurse/name")
 	public ResponseEntity<Nurse> findByName(@RequestParam(value = "name", defaultValue = "") String name) {
 

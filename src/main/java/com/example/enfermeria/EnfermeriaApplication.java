@@ -2,8 +2,8 @@ package com.example.enfermeria;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 
@@ -15,16 +15,16 @@ public class EnfermeriaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EnfermeriaApplication.class, args);
 
-		nurseList.add(new Nurse("m", "Marc", "123"));
-		nurseList.add(new Nurse("p", "Patrick", "123"));
-		nurseList.add(new Nurse("a", "Adam", "123"));
-		nurseList.add(new Nurse("v", "Victor", "123"));
-		nurseList.add(new Nurse("e", "Eric", "123"));
+		nurseList.add(new Nurse("Maria01", "Maria", "123"));
+		nurseList.add(new Nurse("Irene02", "Irene", "123"));
+		nurseList.add(new Nurse("Claudia03", "Claudia", "123"));
+		nurseList.add(new Nurse("Anna04", "Anna", "123"));
+		nurseList.add(new Nurse("Cristina05", "Cristina", "123"));
 
 	}
 
-	@GetMapping("/hello")
-	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
-		return String.format("Hello %s!", name);
-	}
+    @GetMapping("/mainTest")
+    public ResponseEntity<String> mainTest(){
+    	return ResponseEntity.ok("The system is working fine!");
+    }
 }
