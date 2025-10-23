@@ -24,7 +24,7 @@ public class NurseController {
 	private NurseRepository nurseRepository;
 	
 	/*
-	 * TODO ESTE METODO NO ES MI PARTE, ESTÁ DESACTUALIZADO
+	 * BORRAR ESTE MÉTODO Y AÑADIR EL MÉTODO DEL PATRICK
 	@PostMapping("/login")
     public ResponseEntity<Boolean> login(@RequestBody Nurse loginRequest) {
     	String usr = loginRequest.getUser();
@@ -48,7 +48,7 @@ public class NurseController {
 	
 	
 	/*
-	 * TODO ESTE METODO NO ES MI PARTE, ESTÁ DESACTUALIZADO
+	 * BORRAR ESTE MÉTODO Y AÑADIR EL MÉTODO DEL ADAM
 		@GetMapping("/name")
 		public ResponseEntity<Nurse> findByName(@RequestParam(value = "name") String name) {
 	
