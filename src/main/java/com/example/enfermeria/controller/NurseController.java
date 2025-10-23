@@ -1,6 +1,8 @@
 package com.example.enfermeria.controller;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.enfermeria.EnfermeriaApplication;
@@ -24,18 +27,17 @@ public class NurseController {
 	private NurseRepository nurseRepository;
 	
 	@PostMapping("/login")
-    public ResponseEntity<Boolean> login(@RequestBody Nurse loginRequest) {
-    	String usr = loginRequest.getUser();
-    	String pw = loginRequest.getPassword();
+    public @ResponseBody boolean login(@RequestBody Nurse loginRequest) {		
+		String user = loginRequest.getName();
+		String password = loginRequest.getPassword();
     	
-    	for (Nurse nurses : nurseList) {
-    		if (nurses.getUser().equals(usr) && nurses.getPassword().equals(pw)) {
-    			return ResponseEntity.ok(true);
-    		}
-    	}
-    	return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(false);
+		Optional<Nurse> nurse = nurseRepository.findByUser(user);
+		if (nurse.isPresent() && nurse.get().getPassword().equals(password)) {
+		    return true;
+		}
+		return false;
     }
-	
+	/*
 	@GetMapping("/index")
 	public ResponseEntity<ArrayList<Nurse>> getAll(){
 		return ResponseEntity.ok(nurseList);
@@ -51,4 +53,5 @@ public class NurseController {
 		}
 		return ResponseEntity.notFound().build();
 	}
+	*/
 }
