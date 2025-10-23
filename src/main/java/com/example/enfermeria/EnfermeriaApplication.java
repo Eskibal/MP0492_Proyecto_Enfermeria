@@ -5,6 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.enfermeria.entity.Nurse;
+
 import java.util.ArrayList;
 
 @SpringBootApplication
@@ -15,11 +18,13 @@ public class EnfermeriaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EnfermeriaApplication.class, args);
 
-		nurseList.add(new Nurse("Maria01", "Maria", "123"));
-		nurseList.add(new Nurse("Irene02", "Irene", "123"));
-		nurseList.add(new Nurse("Claudia03", "Claudia", "123"));
-		nurseList.add(new Nurse("Anna04", "Anna", "123"));
-		nurseList.add(new Nurse("Cristina05", "Cristina", "123"));
+		/*
+		nurseList.add(new Nurse(1, "Maria01", "Maria", "123", "maria@gmail.com"));
+		nurseList.add(new Nurse(2, "Irene02", "Irene", "123", "irene@gmail.com"));
+		nurseList.add(new Nurse(3, "Claudia03", "Claudia", "123", "claudia@gmail.com"));
+		nurseList.add(new Nurse(4, "Anna04", "Anna", "123", "ana@gmail.com"));
+		nurseList.add(new Nurse(5, "Cristina05", "Cristina", "123", "cristina@gmail.com"));
+		*/
 
 	}
 
