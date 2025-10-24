@@ -1,6 +1,9 @@
 package com.example.enfermeria.controller;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,21 +26,17 @@ public class NurseController {
 	@Autowired
 	private NurseRepository nurseRepository;
 	
-	/*
-	 * BORRAR ESTE MÉTODO Y AÑADIR EL MÉTODO DEL PATRICK
 	@PostMapping("/login")
-    public ResponseEntity<Boolean> login(@RequestBody Nurse loginRequest) {
-    	String usr = loginRequest.getUser();
-    	String pw = loginRequest.getPassword();
+    public @ResponseBody boolean login(@RequestBody Nurse loginRequest) {		
+		String user = loginRequest.getName();
+		String password = loginRequest.getPassword();
     	
-    	for (Nurse nurses : nurseList) {
-    		if (nurses.getUser().equals(usr) && nurses.getPassword().equals(pw)) {
-    			return ResponseEntity.ok(true);
-    		}
-    	}
-    	return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(false);
+		Optional<Nurse> nurse = nurseRepository.findByUser(user);
+		if (nurse.isPresent() && nurse.get().getPassword().equals(password)) {
+		    return true;
+		}
+		return false;
     }
-	*/
 	
 	@GetMapping("/index")
 	public @ResponseBody Iterable<Nurse> getAll()
@@ -59,5 +58,7 @@ public class NurseController {
 			}
 			return ResponseEntity.notFound().build();
 		}
+		return ResponseEntity.notFound().build();
+	}
 	*/
 }
