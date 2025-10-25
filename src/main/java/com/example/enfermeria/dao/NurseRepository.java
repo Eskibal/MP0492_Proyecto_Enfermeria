@@ -8,5 +8,7 @@ import com.example.enfermeria.entity.Nurse;
 
 public interface NurseRepository extends CrudRepository<Nurse, Integer> {
 
+	Optional<Nurse> findByNameIgnoreCase(String name);
+
 	Optional<Nurse> findByUser(String user);
 }
