@@ -24,20 +24,21 @@ public class Nurse {
 	}
 
 	public String getUser() {
-		return name;
+	    return user;
 	}
 
 	public void setUser(String user) {
-		this.name = user;
+	    this.user = user;
 	}
 
 	public String getName() {
-		return user;
+	    return name;
 	}
 
 	public void setName(String name) {
-		this.user = name;
+	    this.name = name;
 	}
+
 
 	public String getPassword() {
 		return password;
