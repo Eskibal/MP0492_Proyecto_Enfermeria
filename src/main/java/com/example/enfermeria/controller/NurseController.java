@@ -32,7 +32,7 @@ public class NurseController {
 	
 	@PostMapping("/login")
     public @ResponseBody boolean login(@RequestBody Nurse loginRequest) {		
-		String user = loginRequest.getName();
+		String user = loginRequest.getUser();
 		String password = loginRequest.getPassword();
     	
 		Optional<Nurse> nurse = nurseRepository.findByUser(user);
