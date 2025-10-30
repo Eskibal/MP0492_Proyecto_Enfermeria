@@ -3,10 +3,11 @@ package com.example.enfermeria.dao;
 import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.example.enfermeria.entity.Nurse;
 
-public interface NurseRepository extends CrudRepository<Nurse, Integer> {
+public interface NurseRepository extends CrudRepository<Nurse, Long>, PagingAndSortingRepository<Nurse, Long> {
 
 	Optional<Nurse> findByNameIgnoreCase(String name);
 
