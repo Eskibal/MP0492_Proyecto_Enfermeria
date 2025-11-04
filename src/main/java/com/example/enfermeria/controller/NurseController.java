@@ -2,8 +2,11 @@ package com.example.enfermeria.controller;
 
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,15 +28,15 @@ public class NurseController {
     }
 	
 	@PostMapping("/login")
-    public @ResponseBody boolean login(@RequestBody Nurse loginRequest) {		
+    public @ResponseBody ResponseEntity<Boolean> login(@RequestBody Nurse loginRequest) {		
 		String user = loginRequest.getUser();
 		String password = loginRequest.getPassword();
     	
 		Optional<Nurse> nurse = nurseRepository.findByUser(user);
 		if (nurse.isPresent() && nurse.get().getPassword().equals(password)) {
-		    return true;
+		    return ResponseEntity.ok(true);
 		}
-		return false;
+		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(false);
     }
 	
 	@GetMapping("/index")
@@ -71,8 +74,18 @@ public class NurseController {
 		
 	}
 	
-	public void delete() {
-		
+	@DeleteMapping("/{requestedId}")
+	private ResponseEntity<Void> delete(@PathVariable Long requestedId) 
+	{		
+		if (nurseRepository.existsById(requestedId)) 
+		{
+			nurseRepository.deleteById(requestedId);
+			return ResponseEntity.ok().build();
+		} 
+		else 
+		{
+			return ResponseEntity.notFound().build();
+		}
 	}
 	
 }
