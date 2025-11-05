@@ -4,7 +4,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -67,12 +69,65 @@ public class NurseController {
 			
 	}
 	
-	public void update() {
-		
-	}
-	
-	public void delete() {
-		
+	// PUT requests that match nurse will be handled by this method
+	@PutMapping("/{requestedId}")
+	public ResponseEntity<Void> putNurse(@PathVariable int requestedId, @RequestBody Nurse nurseUpdate) {
+	    Optional<Nurse> nurse = nurseRepository.findById(requestedId);
+	    if (nurse.isPresent()) {
+	        Nurse updatedNurse = nurse.get();
+	        boolean valid = true;
+	        
+	        // name
+	        if (nurseUpdate.getName() != null && 
+	        	nurseUpdate.getName().trim().length() >= 3) {
+	        	
+	        	updatedNurse.setName(nurseUpdate.getName());
+	        	
+	        } else {
+	        	valid = false;
+	        }
+
+	        // user
+	        if (nurseUpdate.getUser() != null && 
+	        	!nurseUpdate.getUser().trim().isEmpty()) {
+	        	
+		        updatedNurse.setUser(nurseUpdate.getUser());
+		        
+	        } else {
+	        	valid = false;
+	        }
+
+	        // password
+	        if (nurseUpdate.getPassword() != null &&
+	            nurseUpdate.getPassword().length() >= 6 &&
+	            nurseUpdate.getPassword().matches("^(?=.*[A-Za-z])(?=.*\\d).+$")) {
+	        	
+	            updatedNurse.setPassword(nurseUpdate.getPassword());
+	            
+	        } else {
+	        	valid = false;
+	        }
+
+	        // email
+	        if (nurseUpdate.getEmail() != null && 
+	        	nurseUpdate.getEmail().matches("^[\\w._%+-]+@[\\w.-]+\\.[A-Za-z]{2,6}$")) {
+	        	
+	        	updatedNurse.setEmail(nurseUpdate.getEmail());
+	        	
+	        } else {
+	        	valid = false;
+	        }
+	        
+	        if(valid) {
+	        	nurseRepository.save(updatedNurse);
+	        	return ResponseEntity.ok().build();
+	        } else {
+	        	return ResponseEntity.badRequest().build();
+	        }
+	        
+	    } else {
+	        return ResponseEntity.notFound().build();
+	    }
 	}
 	
 }
