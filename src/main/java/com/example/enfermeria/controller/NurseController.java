@@ -70,7 +70,7 @@ public class NurseController {
     }
 	
 	
-	@PostMapping("/new")
+	@PostMapping("/{new}")
 	private ResponseEntity<Void> createNurse(@RequestBody Nurse newNurseRequest, UriComponentsBuilder ucb) {
 		
 		Nurse savedNurse = nurseRepository.save(newNurseRequest);
