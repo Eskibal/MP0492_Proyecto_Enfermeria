@@ -1,5 +1,6 @@
 package com.example.enfermeria.controller;
 
+import java.net.URI;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
+
 import com.example.enfermeria.dao.NurseRepository;
 import com.example.enfermeria.entity.Nurse;
 
@@ -67,8 +70,13 @@ public class NurseController {
     }
 	
 	
-	public void create() {
+	@PostMapping("/new")
+	private ResponseEntity<Void> createNurse(@RequestBody Nurse newNurseRequest, UriComponentsBuilder ucb) {
 		
+		Nurse savedNurse = nurseRepository.save(newNurseRequest);
+
+		URI locationOfNewNurse = ucb.path("nurse/{id}").buildAndExpand(savedNurse.getIdNurse()).toUri();
+		return ResponseEntity.created(locationOfNewNurse).build();
 	}
 	
 	@GetMapping("/{id}")
@@ -84,7 +92,7 @@ public class NurseController {
 	
 	// PUT requests that match nurse will be handled by this method
 	@PutMapping("/{requestedId}")
-	public ResponseEntity<Void> putNurse(@PathVariable int requestedId, @RequestBody Nurse nurseUpdate) {
+	public ResponseEntity<Void> putNurse(@PathVariable long requestedId, @RequestBody Nurse nurseUpdate) {
 	    Optional<Nurse> nurse = nurseRepository.findById(requestedId);
 	    if (nurse.isPresent()) {
 	        Nurse updatedNurse = nurse.get();
