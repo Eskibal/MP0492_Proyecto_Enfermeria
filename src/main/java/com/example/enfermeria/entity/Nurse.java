@@ -11,17 +11,17 @@ import jakarta.persistence.Id;
 public class Nurse {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idNurse;
+	private int idNurse;
 	private String name;
 	private String user;
 	private String password;
 	private String email;
 
-	public long getIdNurse() {
+	public int getIdNurse() {
 		return idNurse;
 	}
 
-	public void setIdNurse(long idNurse) {
+	public void setIdNurse(int idNurse) {
 		this.idNurse = idNurse;
 	}
 

@@ -92,7 +92,7 @@ public class NurseController {
 	
 	// PUT requests that match nurse will be handled by this method
 	@PutMapping("/{requestedId}")
-	public ResponseEntity<Void> putNurse(@PathVariable long requestedId, @RequestBody Nurse nurseUpdate) {
+	public ResponseEntity<Void> putNurse(@PathVariable int requestedId, @RequestBody Nurse nurseUpdate) {
 	    Optional<Nurse> nurse = nurseRepository.findById(requestedId);
 	    if (nurse.isPresent()) {
 	        Nurse updatedNurse = nurse.get();
