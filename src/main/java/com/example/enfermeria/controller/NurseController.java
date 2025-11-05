@@ -70,12 +70,12 @@ public class NurseController {
     }
 	
 	
-	@PostMapping("/new")
+	@PostMapping("/{new}")
 	private ResponseEntity<Void> createNurse(@RequestBody Nurse newNurseRequest, UriComponentsBuilder ucb) {
 		
-		Nurse savedNurse = NurseRepository.save(newNurseRequest);
+		Nurse savedNurse = nurseRepository.save(newNurseRequest);
 
-		URI locationOfNewNurse = ucb.path("nurse/{id}").buildAndExpand(savedNurse.id()).toUri();
+		URI locationOfNewNurse = ucb.path("nurse/{id}").buildAndExpand(savedNurse.getIdNurse()).toUri();
 		return ResponseEntity.created(locationOfNewNurse).build();
 	}
 	
@@ -92,7 +92,7 @@ public class NurseController {
 	
 	// PUT requests that match nurse will be handled by this method
 	@PutMapping("/{requestedId}")
-	public ResponseEntity<Void> putNurse(@PathVariable int requestedId, @RequestBody Nurse nurseUpdate) {
+	public ResponseEntity<Void> putNurse(@PathVariable Long requestedId, @RequestBody Nurse nurseUpdate) {
 	    Optional<Nurse> nurse = nurseRepository.findById(requestedId);
 	    if (nurse.isPresent()) {
 	        Nurse updatedNurse = nurse.get();
