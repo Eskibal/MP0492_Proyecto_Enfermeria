@@ -1,5 +1,6 @@
 package com.example.enfermeria.controller;
 
+import java.net.URI;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
+
 import com.example.enfermeria.dao.NurseRepository;
 import com.example.enfermeria.entity.Nurse;
 
@@ -59,8 +62,13 @@ public class NurseController {
     }
 	
 	
-	public void create() {
+	@PostMapping("/new")
+	private ResponseEntity<Void> createNurse(@RequestBody Nurse newNurseRequest, UriComponentsBuilder ucb) {
 		
+		Nurse savedNurse = NurseRepository.save(newNurseRequest);
+
+		URI locationOfNewNurse = ucb.path("nurse/{id}").buildAndExpand(savedNurse.id()).toUri();
+		return ResponseEntity.created(locationOfNewNurse).build();
 	}
 	
 	public void read() {
