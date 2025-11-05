@@ -6,14 +6,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.enfermeria.entity.Nurse;
-
-import java.util.ArrayList;
-
 @SpringBootApplication
 @RestController
 public class EnfermeriaApplication {
-	public static ArrayList<Nurse> nurseList = new ArrayList<Nurse>();
 
 	public static void main(String[] args) 
 	{

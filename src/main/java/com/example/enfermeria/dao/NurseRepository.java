@@ -12,5 +12,4 @@ public interface NurseRepository extends CrudRepository<Nurse, Long>, PagingAndS
 	Optional<Nurse> findByNameIgnoreCase(String name);
 
 	Optional<Nurse> findByUser(String user);
-	
 }
