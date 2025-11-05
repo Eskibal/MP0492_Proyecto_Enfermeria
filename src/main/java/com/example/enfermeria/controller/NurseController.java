@@ -154,7 +154,7 @@ public class NurseController {
 	@GetMapping
 	public ResponseEntity<Iterable<Nurse>> findAll(Pageable pageable)
 	{
-		Page<Nurse> page = nurseRepository.findAll(PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), pageable.getSortOr(Sort.by(Sort.Direction.ASC, "amount"))));
+		Page<Nurse> page = nurseRepository.findAll(PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()));
 		
 		return ResponseEntity.ok(page.getContent());
 	}
