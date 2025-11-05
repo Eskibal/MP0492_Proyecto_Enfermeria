@@ -80,7 +80,7 @@ public class NurseController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Nurse> findById(@PathVariable long requestedId)
+	public ResponseEntity<Nurse> findById(@PathVariable int requestedId)
 	{
 		Optional<Nurse> nurse = nurseRepository.findById(requestedId);
 		if (nurse.isPresent()) {
@@ -150,17 +150,9 @@ public class NurseController {
 	        return ResponseEntity.notFound().build();
 	    }
 	}
-  
-	@GetMapping
-	public ResponseEntity<Iterable<Nurse>> findAll(Pageable pageable)
-	{
-		Page<Nurse> page = nurseRepository.findAll(PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()));
-		
-		return ResponseEntity.ok(page.getContent());
-	}
 	
 	@DeleteMapping("/{requestedId}")
-	private ResponseEntity<Void> delete(@PathVariable long requestedId) 
+	private ResponseEntity<Void> delete(@PathVariable int requestedId) 
 	{		
 		if (nurseRepository.existsById(requestedId)) 
 		{

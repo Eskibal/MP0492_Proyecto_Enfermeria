@@ -7,7 +7,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.example.enfermeria.entity.Nurse;
 
-public interface NurseRepository extends CrudRepository<Nurse, Long>, PagingAndSortingRepository<Nurse, Long> {
+public interface NurseRepository extends CrudRepository<Nurse, Integer> {
 
 	Optional<Nurse> findByNameIgnoreCase(String name);
 
