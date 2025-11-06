@@ -66,12 +66,32 @@ public class NurseController {
     }
 	
 	@PostMapping("/new")
-	private ResponseEntity<Void> createNurse(@RequestBody Nurse newNurseRequest, UriComponentsBuilder ucb) {
-		
-		Nurse savedNurse = nurseRepository.save(newNurseRequest);
-
-		URI locationOfNewNurse = ucb.path("nurse/{id}").buildAndExpand(savedNurse.getIdNurse()).toUri();
-		return ResponseEntity.created(locationOfNewNurse).build();
+	public ResponseEntity<Void> createNurse(@RequestBody Nurse newNurseRequest, UriComponentsBuilder ucb) {
+		boolean valid = true;
+		// name
+		if (newNurseRequest.getName() == null || newNurseRequest.getName().trim().length() < 3) {
+			valid = false;
+		}
+		// user
+		if (newNurseRequest.getUser() == null || newNurseRequest.getUser().trim().isEmpty()) {
+			valid = false;
+		}
+		// password
+		if (newNurseRequest.getPassword() == null || newNurseRequest.getPassword().length() < 6
+				|| !newNurseRequest.getPassword().matches("^(?=.*[A-Za-z])(?=.*\\d).+$")) {
+			valid = false;
+		}
+		// email
+		if (newNurseRequest.getEmail() == null || !newNurseRequest.getEmail().matches("^[\\w._%+-]+@[\\w.-]+\\.[A-Za-z]{2,6}$")) {
+			valid = false;
+		}
+		if (valid) {
+			Nurse savedNurse = nurseRepository.save(newNurseRequest);
+			URI locationOfNewNurse = ucb.path("nurse/{id}").buildAndExpand(savedNurse.getIdNurse()).toUri();
+			return ResponseEntity.created(locationOfNewNurse).build();
+		} else {
+			return ResponseEntity.badRequest().build();
+		}
 	}
 	
 	@GetMapping("/{requestedId}")
