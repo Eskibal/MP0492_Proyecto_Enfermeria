@@ -1,0 +1,37 @@
+name: 🧪 CI - Build & Test Enfermeria
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    name: Build & Run Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Clona el repositorio
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2️⃣ Configura Java (usa tu versión, aquí Java 17)
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: maven
+
+      # 3️⃣ Instala dependencias y ejecuta los tests
+      - name: Build with Maven
+        run: mvn -B clean verify
+
+      # 4️⃣ Publica los resultados de los tests en la UI de GitHub
+      - name: Publish Test Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report
+          path: target/surefire-reports/
