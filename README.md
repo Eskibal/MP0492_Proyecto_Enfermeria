@@ -1,7 +1,5 @@
 # 🏥 Nurse Management API
 
-## 🩺 Overview
-
 In this project, we will develop and complete an API capable of handling the basic **CRUD operations** (Create, Read, Update, and Delete) for a **"Nurse"** entity.  
 
 Additionally, we will configure a **Continuous Integration (CI)** system to ensure that **unit tests** are executed automatically whenever changes are made to the code, guaranteeing software quality and enabling early detection of errors.  
