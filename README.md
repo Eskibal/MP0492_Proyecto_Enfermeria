@@ -1,4 +1,3 @@
-Use [GitHub Markdown](https://docs.github.com/es/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) or [Markdown Guide](https://www.markdownguide.org/) to write and style this README or use AI ;)))
 # 🧩 CRUD Backend – Nurse Management API
 
 ## 🩺 Overview
@@ -31,7 +30,7 @@ Each team member contributed to different aspects of the project, including CRUD
 
 | Operation | Description | Response Codes |
 |------------|--------------|----------------|
-| **C (Create)** | Create a new nurse record | ✅ `201 OK`, ❌ `400 Bad Request` |
+| **C (Create)** | Create a new nurse record | ✅ `201 Created`, ❌ `400 Bad Request` |
 | **R (Read)** | Retrieve nurse by ID | ✅ `200 OK`, ❌ `404 Not Found` |
 | **U (Update)** | Update nurse data by ID | ✅ `200 OK`, ❌ `404 Not Found`, ❌ `400 Bad Request` |
 | **D (Delete)** | Delete a nurse by ID | ✅ `200 OK`, ❌ `404 Not Found` |
@@ -76,10 +75,7 @@ It was written following Markdown best practices:
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/nurse-crud-api.git
-
-# Navigate into the project
-cd nurse-crud-api
+git clone https://github.com/Eskibal/MP0492_Proyecto_Enfermeria.git
 
 # Install dependencies (example for Symfony)
 composer install
