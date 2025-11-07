@@ -2,6 +2,6 @@ Use [GitHub Markdown](https://docs.github.com/es/get-started/writing-on-github/g
 # Hospital Nurse Application
 description
 ## Instalation
-bottom text
+Instructions to clone the repository. Comands to install dependencies and configure the environment.
 ## Usage
-bottom text
+Examples of how to execute the aplication. Description of the key functionalities or examples of usage of the API.
