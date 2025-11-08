@@ -14,7 +14,7 @@ This is a Backend application developed to manage information and common workflo
 ## ⚙️ Installation
 
 ### Requirements
-+ Java 17 or superior
++ Java 17 or posterior
 + Git installed
 + (Optional) Maven installed on local if the wrapper is not going to be used
 + Database compatible with Hibernate (ex. MySQL or PostgreSQL) or use an in-memory configuration for tests
