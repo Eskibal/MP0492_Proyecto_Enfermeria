@@ -34,7 +34,7 @@ cd MP0492_Proyecto_Enfermeria
 Example on `application.properties`
 ```properties
 spring.application.name=name
-spring.datasource.url=jdbc:mysql://localhost:****/database_name
+spring.datasource.url=jdbc:mysql://localhost:8080/database_name
 spring.datasource.username=your_username
 spring.datasource.password=your_password
 spring.jpa.hibernate.ddl-auto=update
