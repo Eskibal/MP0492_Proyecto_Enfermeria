@@ -31,7 +31,7 @@ public class NurseController {
     }
 	
 	@PostMapping("/login")
-    public @ResponseBody ResponseEntity<String> login(@RequestBody Nurse loginRequest) {		
+    public @ResponseBody ResponseEntity<Boolean> login(@RequestBody Nurse loginRequest) {		
 		String user = loginRequest.getUser();
 		String password = loginRequest.getPassword();
     	
